@@ -23,6 +23,7 @@ public class DataConfig implements ApplicationRunner {
             booki.setName("book" + i);
             booki.setPrice(i*1000L);
             booki.setAmount(i+10L);
+            booki.setAuthorId((i%3)+1);
             books.add(booki);
         }
         bookRepository.saveAll(books);

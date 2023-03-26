@@ -21,4 +21,5 @@ public class Book {
     private String name;
     private Long price;
     private Long amount;
+    private Integer authorId;
 }
