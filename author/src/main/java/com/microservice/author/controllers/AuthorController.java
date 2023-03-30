@@ -1,5 +1,6 @@
 package com.microservice.author.controllers;
 
+import com.microservice.author.config.BookServiceProxy;
 import com.microservice.author.entities.Author;
 import com.microservice.author.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class AuthorController {
     @Autowired
     private AuthorService authorService;
 
+    @Autowired
+    private BookServiceProxy proxy;
+
     @GetMapping
     public ResponseEntity<?> getAuthors(){
         return ResponseEntity.ok(authorService.getAuthors());
@@ -26,5 +30,10 @@ public class AuthorController {
     public ResponseEntity<?> getAuthorById(@PathVariable Integer id){
         Author author = authorService.getAuthorById(id);
         return ResponseEntity.status(author != null ? 200 : 404).body(author);
+    }
+
+    @GetMapping("/books/{id}")
+    public ResponseEntity<?> getBooksByAuthor(@PathVariable Integer id){
+        return ResponseEntity.ok(proxy.getBooksByAuthor(id));
     }
 }

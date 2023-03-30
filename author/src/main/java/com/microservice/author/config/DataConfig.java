@@ -22,6 +22,7 @@ public class DataConfig implements ApplicationRunner {
         for (int i = 0; i < 3; i++) {
             Author author = new Author();
             author.setName("author" + i);
+            authors.add(author);
         }
         authorRepository.saveAll(authors);
     }
