@@ -1,0 +1,27 @@
+server:
+  port: 2222
+
+spring:
+  application:
+    name: ApiGateway
+  cloud:
+    gateway:
+      routes:
+        - id: book
+          uri: http://localhost:8080/
+          predicates:
+            - Path=/book/**
+        - id: author
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/author/**
+
+eureka:
+  instance:
+    appname: ApiGateway
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    service-url:
+      - defaultZone=http://localhost:8761/eureka
+
