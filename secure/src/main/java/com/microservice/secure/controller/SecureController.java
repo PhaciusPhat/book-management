@@ -34,8 +34,8 @@ public class SecureController {
     //login
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody SecureRequestDTO secureRequestDTO) {
-        authenticate(secureRequestDTO.username(), passwordEncoder.encode(secureRequestDTO.password()));
-        return ResponseEntity.ok("");
+        authenticate(secureRequestDTO.username(), secureRequestDTO.password());
+        return ResponseEntity.ok("đang nhập thành công");
     }
     //register
     @PostMapping("/register")
